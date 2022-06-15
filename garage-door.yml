@@ -1,0 +1,7 @@
+esphome:
+  name: rpi-pico
+
+rp2040:
+  board: pico
+
+# TODO.

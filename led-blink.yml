@@ -1,0 +1,19 @@
+esphome:
+  name: rpi-pico
+
+rp2040:
+  board: pico
+
+output:
+  - platform: gpio
+    pin:
+      number: 25
+      mode: output
+    id: LED
+
+interval:
+  - interval: 500ms
+    then:
+      - output.turn_on: LED
+      - delay: 250ms
+      - output.turn_off: LED
