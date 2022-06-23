@@ -2,13 +2,15 @@
 
 I wanted to build a sensor to determine the state of my garage door—open or closed—and send that state to Home Assistant so I can display the status in a dashboard and build automation from it (e.g. warning me if I'm asleep and the garage door is open!).
 
-If I wanted some sort of cloud integration, I could pay for the kit that connects to my garage door opener, but since the cloud is just someone else's computer, and I'd rather not rely on some company's weak security to protect data about my home... I want it all local.
+If I wanted some sort of cloud integration, I could pay for the kit that connects to my garage door opener, but since [the cloud is just someone else's computer](https://blog.codinghorror.com/the-cloud-is-just-someone-elses-computer/), and I'd rather not rely on some company's weak security to protect data about my home... I want it all local.
 
 ## Setting up the Pico W
 
 I decided to use a Raspberry Pi Pico W for this project—you could probably also use an ESP32 or ESP8266 just as easily, since this project uses ESPHome.
 
 You will have to flash the firmware to the Pico W in order for it to work.
+
+> **Note**: I also have a MicroPython-based setup in the [`micropython`](micropython) folder.
 
 ### Using Docker
 
