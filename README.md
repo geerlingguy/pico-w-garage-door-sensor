@@ -10,11 +10,11 @@ I decided to use a Raspberry Pi Pico W for this project—you could probably als
 
 You will have to flash the firmware to the Pico W in order for it to work.
 
-> **Note**: I also have a MicroPython-based setup in the [`micropython`](micropython) folder.
+> **Note**: I also have a MicroPython-based setup in the [`./micropython`](micropython) folder.
 
 ### Using Docker
 
-> Note: This will not work until [this Pull Request](https://github.com/esphome/esphome/pull/3284) is merged into ESPHome.
+> **Note**: This will not work until [this Pull Request](https://github.com/esphome/esphome/pull/3284) is merged into ESPHome.
 
 In this directory, I run `docker-compose up -d` to start an esphome container that I'll use to flash the Pico.
 

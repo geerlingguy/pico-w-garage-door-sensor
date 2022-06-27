@@ -12,6 +12,7 @@ But before that, please follow the [Getting started with Raspberry Pi Pico](http
 >
 >   - `led-blink.py`: Helpful for ensuring you have your environment set up correctly. Run it on the Pico W, and the LED should blink once per second.
 >   - `sensor.py`: Simple example for testing a magnetic reed sensor local on the Pico W itself. You can use this to ensure you have the circuit wired properly. The LED should be lit when the sensor is 'open' (the magnet is far away), and should be off when the sensor is 'closed' (the magnet is close).
+>   - `webserver.py`: A lightweight MicroPython webserver example.
 
 ## Customizing the Code
 
