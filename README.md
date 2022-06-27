@@ -10,7 +10,7 @@ I decided to use a Raspberry Pi Pico W for this project—you could probably als
 
 You will have to flash the firmware to the Pico W in order for it to work.
 
-> **Note**: I also have a MicroPython-based setup in the [`micropython`](micropython/) folder.
+> **Note**: I also have a MicroPython-based setup in the [`micropython`](/pico-w-garage-door-sensor/micropython/) folder.
 
 ### Using Docker
 
