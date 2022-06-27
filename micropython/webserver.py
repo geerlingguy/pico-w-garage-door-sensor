@@ -1,10 +1,10 @@
-import network
-import socket
 import time
+import socket
+import network
 
 from machine import Pin
 
-led = machine.Pin("LED", machine.Pin.OUT, value=1)
+led = Pin("LED", Pin.OUT, value=1)
 
 # Configure your WiFi SSID and password
 ssid = 'TODO'
@@ -17,7 +17,7 @@ wlan.connect(ssid, password)
 
 
 def blink_led(frequency = 0.5, num_blinks = 3):
-    for i in range(num_blinks):
+    for _ in range(num_blinks):
         led.on()
         time.sleep(frequency)
         led.off()

@@ -2,4 +2,6 @@
 disable=global-statement,
         invalid-name,
         missing-module-docstring,
-        import-error
+        missing-function-docstring,
+        import-error,
+        no-else-raise

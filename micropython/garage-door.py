@@ -1,15 +1,12 @@
-# TODO: SEE https://forums.raspberrypi.com/viewtopic.php?p=2014658#p2014658
-
-import network
-import socket
 import time
+import network
 
 from machine import Pin
 import uasyncio as asyncio
 
 check_interval_sec = 0.25
 door_sensor = Pin(0, Pin.IN, Pin.PULL_UP)
-led = machine.Pin("LED", machine.Pin.OUT, value=1)
+led = Pin("LED", Pin.OUT, value=1)
 
 # Configure your WiFi SSID and password
 ssid = 'TODO'
@@ -56,7 +53,7 @@ def connect_to_wifi():
 
 
 def blink_led(frequency = 0.5, num_blinks = 3):
-    for i in range(num_blinks):
+    for _ in range(num_blinks):
         led.on()
         time.sleep(frequency)
         led.off()
@@ -108,7 +105,7 @@ async def main():
     while True:
         print("Monitoring garage door state....")
         sensor_update()
-        await uasyncio.sleep(check_interval_sec)
+        await asyncio.sleep(check_interval_sec)
 
 
 try:
