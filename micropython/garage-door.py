@@ -17,17 +17,28 @@ sensor_value = None
 
 wlan = network.WLAN(network.STA_IF)
 
-html = """<!DOCTYPE html>
-<html>
-    <head> <title>Garage Door Status</title> </head>
-    <body> <h1>Garage Door Status</h1>
-        <p>Garage door is currently TODO.</p>
-    </body>
-</html>
-"""
+
+def get_html(garage_door_status = "OPEN"):
+    html = """<!DOCTYPE html>
+    <html>
+        <head> <title>Garage Door Status</title> </head>
+        <body> <h1>Garage Door Status</h1>
+            <p>Garage Door is currently $status. </p>
+        </body>
+    </html>
+    """
+    return html.replace("$status", garage_door_status)
 
 
-def connect_to_wifi():
+def blink_led(frequency = 0.5, num_blinks = 3):
+    for _ in range(num_blinks):
+        led.on()
+        time.sleep(frequency)
+        led.off()
+        time.sleep(frequency)
+
+
+async def connect_to_wifi():
     wlan.active(True)
     wlan.config(pm = 0xa11140)  # Diable powersave mode
     wlan.connect(ssid, password)
@@ -43,67 +54,63 @@ def connect_to_wifi():
 
     # Handle connection error
     if wlan.status() != 3:
-        blink_led(0.2, 5)
-        raise RuntimeError('wifi connection failed')
+        blink_led(0.1, 10)
+        raise RuntimeError('WiFi connection failed')
     else:
-        blink_led(1, 2)
+        blink_led(0.5, 2)
         print('connected')
         status = wlan.ifconfig()
         print('ip = ' + status[0])
 
 
-def blink_led(frequency = 0.5, num_blinks = 3):
-    for _ in range(num_blinks):
-        led.on()
-        time.sleep(frequency)
-        led.off()
-        time.sleep(frequency)
-
-
 async def serve_client(reader, writer):
-    print("Client connected")
+    global sensor_value
+
     request_line = await reader.readline()
     print("Request:", request_line)
     # We are not interested in HTTP request headers, skip them
     while await reader.readline() != b"\r\n":
         pass
 
-    writer.write('HTTP/1.0 200 OK\r\nContent-type: text/plain\r\n\r\n')
-    writer.write(html)
+    writer.write('HTTP/1.0 200 OK\r\nContent-type: text/html\r\n\r\n')
+
+    if sensor_value:
+        writer.write(get_html('OPEN'))
+    else:
+        writer.write(get_html('CLOSED'))
+
     await writer.drain()
     await writer.wait_closed()
-    print("Client disconnected")
 
 
 def sensor_update():
-    while True:
-        global sensor_value
+    global sensor_value
 
-        old_value = sensor_value
-        sensor_value = door_sensor.value()
+    old_value = sensor_value
+    sensor_value = door_sensor.value()
 
-        # Garage door is open.
-        if sensor_value == 1:
-            if old_value != sensor_value:
-                print('Garage door is open.')
-            led.on()
+    # Garage door is open.
+    if sensor_value == 1:
+        if old_value != sensor_value:
+            print('Garage door is open.')
+        led.on()
 
-        # Garage door is closed.
-        elif sensor_value == 0:
-            if old_value != sensor_value:
-                print('Garage door is closed.')
-            led.off()
+    # Garage door is closed.
+    elif sensor_value == 0:
+        if old_value != sensor_value:
+            print('Garage door is closed.')
+        led.off()
 
 
 async def main():
     print('Connecting to WiFi...')
-    connect_to_wifi()
+    asyncio.create_task(connect_to_wifi())
 
     print('Setting up webserver...')
     asyncio.create_task(asyncio.start_server(serve_client, "0.0.0.0", 80))
 
+    print("Monitoring garage door state....")
     while True:
-        print("Monitoring garage door state....")
         sensor_update()
         await asyncio.sleep(check_interval_sec)
 

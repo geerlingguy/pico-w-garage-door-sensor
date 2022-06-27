@@ -4,4 +4,6 @@ disable=global-statement,
         missing-module-docstring,
         missing-function-docstring,
         import-error,
-        no-else-raise
+        no-else-raise,
+        duplicate-code,
+        global-variable-not-assigned
