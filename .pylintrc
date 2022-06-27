@@ -1,0 +1,5 @@
+[MESSAGES CONTROL]
+disable=global-statement,
+        invalid-name,
+        missing-module-docstring,
+        import-error

@@ -1,8 +1,8 @@
-from machine import Pin
 import time
+from machine import Pin
 
 # Set up variables
-check_interval_ms = 100
+check_interval_sec = 0.25
 door_sensor = Pin(0, Pin.IN, Pin.PULL_UP)
 
 # Pico LED
@@ -30,4 +30,4 @@ while True:
             print('Garage door is closed.')
         led.off()
 
-    time.sleep_ms(check_interval_ms)
+    time.sleep(check_interval_sec)

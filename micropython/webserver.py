@@ -42,8 +42,6 @@ while max_wait > 0:
     print('waiting for connection...')
     time.sleep(1)
 
-print wlan.status()
-
 # Handle connection error
 if wlan.status() != 3:
     blink_led(0.2, 5)
