@@ -1,5 +1,7 @@
 # Raspberry Pi Pico W Garage Door Sensor
 
+[![Lint](https://github.com/geerlingguy/pico-w-garage-door-sensor/actions/workflows/lint.yml/badge.svg?branch=master)](https://github.com/geerlingguy/pico-w-garage-door-sensor/actions/workflows/lint.yml)
+
 I wanted to build a sensor to determine the state of my garage door—open or closed—and send that state to Home Assistant so I can display the status in a dashboard and build automation from it (e.g. warning me if I'm asleep and the garage door is open!).
 
 If I wanted some sort of cloud integration, I could pay for the kit that connects to my garage door opener, but since [the cloud is just someone else's computer](https://blog.codinghorror.com/the-cloud-is-just-someone-elses-computer/), and I'd rather not rely on some company's weak security to protect data about my home... I want it all local.
