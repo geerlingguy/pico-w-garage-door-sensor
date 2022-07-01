@@ -8,7 +8,7 @@ If I wanted some sort of cloud integration, I could pay for the kit that connect
 
 ## Setting up the Pico W
 
-I decided to use a Raspberry Pi Pico W for this project—you could probably also use an ESP32 or ESP8266 just as easily, since this project uses ESPHome.
+I decided to use a Raspberry Pi Pico W for this project—you could probably also use an ESP32 or ESP8266 just as easily, since this project uses [ESPHome](https://esphome.io).
 
 You will have to flash the firmware to the Pico W in order for it to work.
 
