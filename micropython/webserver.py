@@ -7,8 +7,8 @@ from machine import Pin
 led = Pin("LED", Pin.OUT, value=1)
 
 # Configure your WiFi SSID and password
-ssid = 'TODO'
-password = 'TODO'
+ssid = 'Tecnoadsl_Gramigna'
+password = 'puravida'
 
 wlan = network.WLAN(network.STA_IF)
 wlan.active(True)

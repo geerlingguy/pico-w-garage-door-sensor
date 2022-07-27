@@ -7,10 +7,12 @@ import uasyncio as asyncio
 check_interval_sec = 0.25
 door_sensor = Pin(0, Pin.IN, Pin.PULL_UP)
 led = Pin("LED", Pin.OUT, value=1)
+ledGreen = Pin(14, Pin.OUT)
+ledRed = Pin(15, Pin.OUT)
 
 # Configure your WiFi SSID and password
-ssid = 'TODO'
-password = 'TODO'
+ssid = 'Tecnoadsl_Gramigna'
+password = 'puravida'
 
 # Initial value for the sensor
 sensor_value = None
@@ -21,7 +23,10 @@ wlan = network.WLAN(network.STA_IF)
 def get_html(garage_door_status = "OPEN"):
     html = """<!DOCTYPE html>
     <html>
-        <head> <title>Garage Door Status</title> </head>
+        <head>
+            <title>Garage Door Status</title>
+            <meta http-equiv="refresh" content="1">
+        </head>
         <body> <h1>Garage Door Status</h1>
             <p>Garage Door is currently $status. </p>
         </body>
@@ -94,12 +99,16 @@ def sensor_update():
         if old_value != sensor_value:
             print('Garage door is open.')
         led.on()
+        ledRed.on()
+        ledGreen.off()
 
     # Garage door is closed.
     elif sensor_value == 0:
         if old_value != sensor_value:
             print('Garage door is closed.')
         led.off()
+        ledRed.off()
+        ledGreen.on()
 
 
 async def main():
