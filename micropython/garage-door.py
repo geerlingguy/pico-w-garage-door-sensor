@@ -1,5 +1,6 @@
 import time
 import network
+import utime
 
 from machine import Pin
 import uasyncio as asyncio
@@ -7,8 +8,42 @@ import uasyncio as asyncio
 check_interval_sec = 0.25
 door_sensor = Pin(0, Pin.IN, Pin.PULL_UP)
 led = Pin("LED", Pin.OUT, value=1)
-ledGreen = Pin(14, Pin.OUT)
-ledRed = Pin(15, Pin.OUT)
+pins = [
+    pin(16.Pin.OUT) #middle
+    pin(17.Pin.OUT) #topLeft
+    pin(18.Pin.OUT) #top
+    pin(19.Pin.OUT) #topRight
+    pin(13.Pin.OUT) #bottomRight
+    pin(14.Pin.OUT) #bottom
+    pin(15.Pin.OUT) #bottonLeft
+    pin(12.Pin.OUT) #dot
+      ]
+ledGreen = Pin(4, Pin.OUT)
+ledRed = Pin(5, Pin.OUT)
+
+chars = [
+    [1,0,0,0,0,0,0,0]#0
+    [1,1,1,0,0,1,1,1]#1
+    [0,1,0,0,1,0,0,0]#2
+    [0,1,0,0,0,0,1,0]#3
+    [0,0,1,0,0,1,1,0]#4
+    [0,0,0,1,0,0,1,0]#5
+    [0,0,0,1,0,0,0,0]#6
+    [1,1,0,0,0,1,1,1]#7
+    [0,0,0,0,0,0,0,0]#8
+    [0,0,0,0,0,0,1,0]#9
+]
+
+def clear()
+for i in pins:
+    i.value(1)
+
+clear()
+while True:
+    for i in range(len(chars)):
+        for j in range(len(pins)):
+            pins[j].value(chars[i][j])
+            utime.sleep(1)
 
 # Configure your WiFi SSID and password
 ssid = 'Tecnoadsl_Gramigna'
