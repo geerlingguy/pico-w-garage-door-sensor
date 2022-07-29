@@ -9,41 +9,43 @@ check_interval_sec = 0.25
 door_sensor = Pin(0, Pin.IN, Pin.PULL_UP)
 led = Pin("LED", Pin.OUT, value=1)
 pins = [
-    pin(16.Pin.OUT) #middle
-    pin(17.Pin.OUT) #topLeft
-    pin(18.Pin.OUT) #top
-    pin(19.Pin.OUT) #topRight
-    pin(13.Pin.OUT) #bottomRight
-    pin(14.Pin.OUT) #bottom
-    pin(15.Pin.OUT) #bottonLeft
-    pin(12.Pin.OUT) #dot
+    Pin(16,Pin.OUT),#middle
+    Pin(17,Pin.OUT),#topLeft
+    Pin(18,Pin.OUT),#top
+    Pin(19,Pin.OUT),#topRight
+    Pin(13,Pin.OUT),#bottomRight
+    Pin(14,Pin.OUT),#bottom
+    Pin(15,Pin.OUT),#bottonLeft
+    Pin(12,Pin.OUT)#dot
       ]
 ledGreen = Pin(4, Pin.OUT)
 ledRed = Pin(5, Pin.OUT)
 
 chars = [
-    [1,0,0,0,0,0,0,0]#0
-    [1,1,1,0,0,1,1,1]#1
-    [0,1,0,0,1,0,0,0]#2
-    [0,1,0,0,0,0,1,0]#3
-    [0,0,1,0,0,1,1,0]#4
-    [0,0,0,1,0,0,1,0]#5
-    [0,0,0,1,0,0,0,0]#6
-    [1,1,0,0,0,1,1,1]#7
-    [0,0,0,0,0,0,0,0]#8
-    [0,0,0,0,0,0,1,0]#9
+    [0,0,0,0,0,0,0,0],#0
+    [1,1,1,0,0,1,1,1],#1
+    [0,1,0,0,1,0,0,0],#2
+    [0,1,0,0,0,0,1,0],#3
+    [0,0,1,0,0,1,1,0],#4
+    [0,0,0,1,0,0,1,0],#5
+    [0,0,0,1,0,0,0,0],#6
+    [1,1,0,0,0,1,1,1],#7
+    [0,0,0,0,0,0,0,0],#8
+    [0,0,0,0,0,0,1,0],#9
+    [0,1,1,1,1,1,1,1],#Open
+    [0,1,1,0,0,1,1,0],#Closed
 ]
 
-def clear()
-for i in pins:
-    i.value(1)
-
+def clear():
+    for i in pins:
+        i.value(1)
 clear()
-while True:
+
+""" while True:
     for i in range(len(chars)):
         for j in range(len(pins)):
             pins[j].value(chars[i][j])
-            utime.sleep(1)
+            utime.sleep(1) """
 
 # Configure your WiFi SSID and password
 ssid = 'Tecnoadsl_Gramigna'
@@ -128,22 +130,36 @@ def sensor_update():
 
     old_value = sensor_value
     sensor_value = door_sensor.value()
-
+    clear()
     # Garage door is open.
     if sensor_value == 1:
         if old_value != sensor_value:
             print('Garage door is open.')
+        
+        clear()
         led.on()
         ledRed.on()
         ledGreen.off()
+        pins[0].value(chars[0][0])
+        pins[2].value(chars[6][5])
+        pins[3].value(chars[6][5])
+        pins[4].value(chars[6][5])
+        pins[5].value(chars[6][5])
+        pins[6].value(chars[6][5])
+        # pins[j].value(chars[i][j]) 
 
     # Garage door is closed.
     elif sensor_value == 0:
         if old_value != sensor_value:
             print('Garage door is closed.')
+        clear()
         led.off()
         ledRed.off()
         ledGreen.on()
+        pins[0].value(chars[0][0])
+        pins[2].value(chars[6][5])
+        pins[5].value(chars[6][5])
+        pins[6].value(chars[6][5])
 
 
 async def main():
