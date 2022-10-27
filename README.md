@@ -68,3 +68,13 @@ $ esphome run garage-door.yml --device /Volumes/RPI-RP2
 After 20-30 seconds, ESPHome should compile and upload the firmware to the Pico.
 
 > Note: There's also an `led-blink.yml` configuration if you want to upload it quickly to verify `esphome` and your Pico are all wired up correctly. If you `run` that file, it should make your Pico start blinking it's onboard LED 2x per second.
+
+### Debugging with ESPHome
+
+If you want to see debug output, after the first time you flash the Pico, you can change the `run` command to:
+
+```
+$ esphome run led-blink.yml --device /dev/tty.usbmodem2101
+```
+
+And it will compile ESPHome, load it onto the Pico, and start displaying logged output. You can change the [log level](https://esphome.io/components/logger.html) using the `logger.level` setting.
