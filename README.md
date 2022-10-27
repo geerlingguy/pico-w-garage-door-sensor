@@ -33,17 +33,17 @@ TODO.
 
 ### Using pip source install
 
-For now, until support for the Pico is merged into ESPHome, you have to install a forked version with support for the Pico. Make sure you have Python 3 installed on your computer, then run:
+For now, until support for the Pico is merged into ESPHome, you have to install the latest dev release with support for the Pico. Make sure you have Python 3 installed on your computer, then run:
 
 ```
-$ pip3 install git+https://github.com/jesserockz/esphome.git@rp2040
+$ pip3 install git+https://github.com/esphome/esphome.git@dev
 ```
 
 Make sure your installation is working:
 
 ```
 $ esphome version
-Version: 2022.7.0-dev
+Version: 2022.11.0-dev
 ```
 
 Then plug in your Pico W, while holding the BOOTSEL button, and when it mounts on your computer, run:
