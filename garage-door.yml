@@ -7,3 +7,7 @@ rp2040:
   framework:
     # Required until https://github.com/platformio/platform-raspberrypi/pull/36 is merged
     platform_version: https://github.com/maxgerhardt/platform-raspberrypi.git
+
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password

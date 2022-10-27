@@ -8,11 +8,24 @@ If I wanted some sort of cloud integration, I could pay for the kit that connect
 
 ## Setting up the Pico W
 
-I decided to use a Raspberry Pi Pico W for this project—you could probably also use an ESP32 or ESP8266 just as easily, since this project uses [ESPHome](https://esphome.io).
+I decided to use a Raspberry Pi Pico W for this project—you could probably also use an ESP32 or ESP8266 with slight modifications, since this project uses [ESPHome](https://esphome.io).
 
 You will have to flash the firmware to the Pico W in order for it to work.
 
 > **Note**: I also have a MicroPython-based setup in the [`micropython`](pico-w-garage-door-sensor/tree/master/micropython) subdirectory.
+
+### Preparing to flash the Pico W
+
+Before you can flash anything to the Pico W, you have to define a few `secrets` that ESPHome will use when it compiles the program.
+
+Create a `secrets.yaml` file inside this directory, and add the following:
+
+```yaml
+---
+wifi_ssid: your-wifi-ssid-here
+wifi_password: your-wifi-password-here
+
+```
 
 ### Using Docker
 
@@ -27,7 +40,7 @@ $ docker exec -it esphome bash
 root@docker-desktop:/config#
 ```
 
-This drops you into the container inside the `config` directory, which is shared from the `config` directory in this repository.
+This drops you into the container inside the `config` directory, which is shared from this repository.
 
 TODO.
 

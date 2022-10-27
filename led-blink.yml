@@ -3,17 +3,35 @@ esphome:
   name: rpi-pico
 
 rp2040:
+  # For Raspberry Pi Pico (non-W)
+  # board: rpipico
+
+  # For Raspberry Pi Pico W
   board: rpipicow
+
   framework:
     # Required until https://github.com/platformio/platform-raspberrypi/pull/36 is merged
     platform_version: https://github.com/maxgerhardt/platform-raspberrypi.git
 
 output:
+  # For Raspberry Pi Pico W
+  # See: https://github.com/esphome/feature-requests/issues/1924#issuecomment-1293937383
   - platform: gpio
     pin:
-      number: 25
+      number: 25  # TODO This DOES NOT WORK on the Pico W
       mode: output
     id: LED
+
+  # For Raspberry Pi Pico (non-W)
+  # - platform: gpio
+  #   pin:
+  #     number: 25
+  #     mode: output
+  #   id: LED
+
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
 
 interval:
   - interval: 500ms
