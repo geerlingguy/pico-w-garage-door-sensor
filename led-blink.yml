@@ -13,21 +13,18 @@ rp2040:
     # Required until https://github.com/platformio/platform-raspberrypi/pull/36 is merged
     platform_version: https://github.com/maxgerhardt/platform-raspberrypi.git
 
+# See: https://github.com/esphome/esphome/pull/3957/files
+external_components:
+  - source: github://pr#3957
+    components: rp2040
+
 output:
   # For Raspberry Pi Pico W
-  # See: https://github.com/esphome/feature-requests/issues/1924#issuecomment-1293937383
   - platform: gpio
     pin:
-      number: 25  # TODO This DOES NOT WORK on the Pico W
+      number: 32  # 25 for Pico (non-W)
       mode: output
     id: LED
-
-  # For Raspberry Pi Pico (non-W)
-  # - platform: gpio
-  #   pin:
-  #     number: 25
-  #     mode: output
-  #   id: LED
 
 wifi:
   ssid: !secret wifi_ssid
