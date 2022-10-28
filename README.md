@@ -97,6 +97,8 @@ Then follow the directions above for 'Using pip source install'.
 
 For now, if you're not running things on a Mac at least, the first install must be done by copying a manually-downloaded .uf2 file to the Pico in BOOTSEL mode.
 
+After ensuring `esphome` installed (see 'Using pip source install' above):
+
   1. Run `esphome dashboard ./`
   2. In a browser, visit the Pi's IP address at port `:6052`
   3. Click the three dots next to the project
