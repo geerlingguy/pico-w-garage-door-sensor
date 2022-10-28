@@ -42,7 +42,19 @@ root@docker-desktop:/config#
 
 This drops you into the container inside the `config` directory, which is shared from this repository.
 
-TODO.
+Compile the binary for the garage door sensor:
+
+```
+$ esphome compile garage-door.yml
+```
+
+Copy the generated binary into the current directory:
+
+```
+$ cp .esphome/build/rpi-pico/.pioenvs/rpi-pico/firmware.uf2 ./rpi-pico.uf2
+```
+
+Then on your host computer, with the Pico W booted into BOOTSEL mode (hold down the BOOTSEL button while plugging in the USB cable), copy the `rpi-pico.uf2` file over to the Pico W. When the copy is complete, the Pico should reboot and start working as a garage door sensor.
 
 ### Using pip source install
 
@@ -65,9 +77,34 @@ Then plug in your Pico W, while holding the BOOTSEL button, and when it mounts o
 $ esphome run garage-door.yml --device /Volumes/RPI-RP2
 ```
 
+> On Raspberry Pi or other Linux devices, the `--device` should be `/dev/sda1` (or whatever mount point)
+
 After 20-30 seconds, ESPHome should compile and upload the firmware to the Pico.
 
 > Note: There's also an `led-blink.yml` configuration if you want to upload it quickly to verify `esphome` and your Pico are all wired up correctly. If you `run` that file, it should make your Pico start blinking it's onboard LED 2x per second.
+
+### Installation from a Raspberry Pi
+
+If you are using a Raspberry Pi, first install Pip:
+
+```
+sudo apt install python3-pip git
+```
+
+Then follow the directions above for 'Using pip source install'.
+
+#### First time install
+
+For now, if you're not running things on a Mac at least, the first install must be done by copying a manually-downloaded .uf2 file to the Pico in BOOTSEL mode.
+
+  1. Run `esphome dashboard ./`
+  2. In a browser, visit the Pi's IP address at port `:6052`
+  3. Click the three dots next to the project
+  4. Click 'Install'
+  5. Click 'Manual download'
+  6. Click the link and wait for the download to be generated, then click the Download link.
+
+Copy the downloaded `rpi-pico.uf2` file to the Pico's filesystem while it's in BOOTSEL mode (hold down BOOTSEL while plugging it in). Unplug and replug the Pico.
 
 ### Debugging with ESPHome
 
