@@ -17,6 +17,9 @@ ota:
   safe_mode: true
   password: !secret ota_password
 
+api:
+  password: !secret api_password
+
 logger:
   level: DEBUG
 
