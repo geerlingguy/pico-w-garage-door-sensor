@@ -13,6 +13,10 @@ wifi:
   password: !secret wifi_password
   fast_connect: true
 
+ota:
+  safe_mode: true
+  password: !secret ota_password
+
 logger:
   level: DEBUG
 

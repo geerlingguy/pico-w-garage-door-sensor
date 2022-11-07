@@ -24,7 +24,7 @@ Create a `secrets.yaml` file inside this directory, and add the following:
 ---
 wifi_ssid: your-wifi-ssid-here
 wifi_password: your-wifi-password-here
-
+ota_password: choose-an-ota-password
 ```
 
 ### Using Docker
