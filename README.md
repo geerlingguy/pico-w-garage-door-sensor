@@ -6,7 +6,19 @@ I wanted to build a sensor to determine the state of my garage door—open or cl
 
 If I wanted some sort of cloud integration, I could pay for the kit that connects to my garage door opener, but since [the cloud is just someone else's computer](https://blog.codinghorror.com/the-cloud-is-just-someone-elses-computer/), and I'd rather not rely on some company's weak security to protect data about my home... I want it all local.
 
-## Setting up the Pico W
+## Garage Door sensors
+
+The actual sensors I use are the ['Enforcer' (model SM-4201-LQ) from Seco-Larm](https://amzn.to/3hD2uGc). I chose these because they are rugged and purpose-built for mounting to garage door tracks.
+
+Watch [this video](https://youtu.be/dFDGtlSi9Eg?t=459) to see how I installed the sensors on my garage doors, and how I wired them to the Pico W.
+
+![RPi Pico Breakout Board wired to garage door sensor](/images/rpi-pico-breakout-pins.jpg)
+
+I used a [RPi Pico Breakout board](https://amzn.to/3O3wFT8) mounted directly to my garage wall, and wired one wire of each sensor to ground, and the `east_garage_door` sensor's other wire to GPIO pin 2.
+
+You can pick any GPIO connection, though—just change the appropriate lines inside `garage-door.yml` before flashing the Pico W using the instructions below.
+
+## Flashing the Pico W
 
 I decided to use a Raspberry Pi Pico W for this project—you could probably also use an ESP32 or ESP8266 with slight modifications, since this project uses [ESPHome](https://esphome.io).
 
