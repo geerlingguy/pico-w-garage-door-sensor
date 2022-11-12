@@ -1,16 +1,28 @@
 ---
 esphome:
-  name: rpi-pico
+  name: led-blink-pico
 
 rp2040:
-  board: pico
+  board: rpipicow  # rpipico for Pico (non-W)
+
+  framework:
+    # Required until https://github.com/platformio/platform-raspberrypi/pull/36 is merged
+    platform_version: https://github.com/maxgerhardt/platform-raspberrypi.git
 
 output:
   - platform: gpio
     pin:
-      number: 25
+      number: 32  # 25 for Pico (non-W)
       mode: output
     id: LED
+
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+  fast_connect: true
+
+logger:
+  level: DEBUG
 
 interval:
   - interval: 500ms

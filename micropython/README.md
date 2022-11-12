@@ -20,4 +20,6 @@ Open the `garage-door.py` file in Thonny.
 
 To get it on the Pico W, you can choose File > Save As... then choose 'Raspberry Pi Pico' as the location to save it. Save it as `garage-door.py`.
 
-Now, TODO.
+Then change the WiFi `ssid` and `password` for your network, and save the file.
+
+Click 'Run', and the Pico should run the code, and connect to your WiFi network.

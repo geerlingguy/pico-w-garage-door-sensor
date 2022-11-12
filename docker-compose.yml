@@ -3,7 +3,7 @@ version: '3'
 services:
   esphome:
     container_name: esphome
-    image: esphome/esphome
+    image: esphome/esphome:dev
     volumes:
       - ./:/config
       - /etc/localtime:/etc/localtime:ro

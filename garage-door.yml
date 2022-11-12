@@ -1,6 +1,60 @@
 ---
 esphome:
-  name: rpi-pico
+  name: garage-door-pico
 
 rp2040:
-  board: pico
+  board: rpipicow
+  framework:
+    # Required until https://github.com/platformio/platform-raspberrypi/pull/36 is merged
+    platform_version: https://github.com/maxgerhardt/platform-raspberrypi.git
+
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+  fast_connect: true
+
+ota:
+  safe_mode: true
+  password: !secret ota_password
+
+api:
+  password: !secret api_password
+
+logger:
+  level: DEBUG
+
+output:
+  # Built-in LED
+  - platform: gpio
+    pin:
+      number: 32  # 25 for Pico (non-W)
+      mode: output
+    id: LED
+
+binary_sensor:
+  # East Garage Door
+  - platform: gpio
+    pin:
+      number: 2
+      mode:
+        input: true
+        pullup: true
+        output: false
+        open_drain: false
+        pulldown: false
+      inverted: false
+    name: East Garage Door
+    id: east_garage_door
+    device_class: door
+    filters:
+      - delayed_on: 10ms
+    disabled_by_default: false
+    on_state:
+      then:
+        - if:
+            condition:
+              binary_sensor.is_on: east_garage_door
+            then:
+              - output.turn_on: LED
+            else:
+              - output.turn_off: LED
