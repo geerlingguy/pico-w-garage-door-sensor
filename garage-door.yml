@@ -58,3 +58,30 @@ binary_sensor:
               - output.turn_on: LED
             else:
               - output.turn_off: LED
+
+  # West Garage Door
+  - platform: gpio
+    pin:
+      number: 3
+      mode:
+        input: true
+        pullup: true
+        output: false
+        open_drain: false
+        pulldown: false
+      inverted: false
+    name: West Garage Door
+    id: west_garage_door
+    device_class: door
+    filters:
+      - delayed_on: 10ms
+    disabled_by_default: false
+    on_state:
+      then:
+        - if:
+            condition:
+              binary_sensor.is_on: west_garage_door
+            then:
+              - output.turn_on: LED
+            else:
+              - output.turn_off: LED

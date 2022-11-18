@@ -14,7 +14,10 @@ Watch [this video](https://youtu.be/dFDGtlSi9Eg?t=459) to see how I installed th
 
 ![RPi Pico Breakout Board wired to garage door sensor](/images/rpi-pico-breakout-pins.jpg)
 
-I used a [RPi Pico Breakout board](https://amzn.to/3O3wFT8) mounted directly to my garage wall, and wired one wire of each sensor to ground, and the `east_garage_door` sensor's other wire to GPIO pin 2.
+I used a [RPi Pico Breakout board](https://amzn.to/3O3wFT8) mounted directly to my garage wall, and wired one wire of each sensor to ground, and the others thusly:
+
+  - `east_garage_door` to GPIO pin 2
+  - `west_garage_door` to GPIO pin 3
 
 You can pick any GPIO connection, though—just change the appropriate lines inside `garage-door.yml` before flashing the Pico W using the instructions below.
 
