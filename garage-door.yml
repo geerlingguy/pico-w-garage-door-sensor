@@ -49,6 +49,7 @@ binary_sensor:
     filters:
       - delayed_on: 10ms
     disabled_by_default: false
+    publish_initial_state: true
     on_state:
       then:
         - if:
@@ -78,6 +79,7 @@ binary_sensor:
     filters:
       - delayed_on: 10ms
     disabled_by_default: false
+    publish_initial_state: true
     on_state:
       then:
         - if:
