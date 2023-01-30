@@ -45,7 +45,7 @@ binary_sensor:
       inverted: false
     name: East Garage Door
     id: east_garage_door
-    device_class: door
+    device_class: garage_door
     filters:
       - delayed_on: 10ms
     disabled_by_default: false
@@ -75,7 +75,7 @@ binary_sensor:
       inverted: false
     name: West Garage Door
     id: west_garage_door
-    device_class: door
+    device_class: garage_door
     filters:
       - delayed_on: 10ms
     disabled_by_default: false
