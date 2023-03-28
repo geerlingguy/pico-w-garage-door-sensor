@@ -43,7 +43,7 @@ ota_password: choose-an-ota-password
 api_encryption_key: choose-an-api-encryption-key
 ```
 
-**Note**: The [ESPHome docs API page](https://esphome.io/components/api.html) can generate an encryption key in-browser.
+> **Note**: The [ESPHome docs API page](https://esphome.io/components/api.html) can generate an encryption key in-browser.
 
 ### Using Docker
 
