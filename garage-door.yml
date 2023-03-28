@@ -18,7 +18,8 @@ ota:
   password: !secret ota_password
 
 api:
-  password: !secret api_password
+  encryption:
+    key: !secret api_encryption_key
 
 logger:
   level: DEBUG
