@@ -40,8 +40,10 @@ Create a `secrets.yaml` file inside this directory, and add the following:
 wifi_ssid: your-wifi-ssid-here
 wifi_password: your-wifi-password-here
 ota_password: choose-an-ota-password
-api_password: choose-an-api-password
+api_encryption_key: choose-an-api-encryption-key
 ```
+
+> **Note**: The [ESPHome docs API page](https://esphome.io/components/api.html) can generate an encryption key in-browser.
 
 ### Using Docker
 
