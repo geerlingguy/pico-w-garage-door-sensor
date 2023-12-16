@@ -40,14 +40,15 @@ Create a `secrets.yaml` file inside this directory, and add the following:
 wifi_ssid: your-wifi-ssid-here
 wifi_password: your-wifi-password-here
 ota_password: choose-an-ota-password
+
+# Encryption key for HA API access.
+# Generate a random 32-bit key with `openssl rand -base64 32`
 api_encryption_key: choose-an-api-encryption-key
 ```
 
 > **Note**: The [ESPHome docs API page](https://esphome.io/components/api.html) can generate an encryption key in-browser.
 
 ### Using Docker
-
-> **Note**: This will not work until [this Pull Request](https://github.com/esphome/esphome/pull/3284) is merged into ESPHome.
 
 In this directory, I run `docker-compose up -d` to start an esphome container that I'll use to flash the Pico.
 
@@ -76,17 +77,17 @@ Then on your host computer, with the Pico W booted into BOOTSEL mode (hold down 
 
 ### Using pip source install
 
-For now, until support for the Pico is merged into ESPHome, you have to install the latest dev release with support for the Pico. Make sure you have Python 3 installed on your computer, then run:
+Make sure you have Python 3 installed on your computer, then run:
 
 ```
-$ pip3 install git+https://github.com/esphome/esphome.git@dev
+$ pip3 install esphome
 ```
 
 Make sure your installation is working:
 
 ```
 $ esphome version
-Version: 2022.11.0-dev
+Version: 2023.11.6
 ```
 
 Then plug in your Pico W, while holding the BOOTSEL button, and when it mounts on your computer, run:
