@@ -13,8 +13,10 @@ wifi:
   password: !secret wifi_password
   fast_connect: true
 
+safe_mode:
+
 ota:
-  safe_mode: true
+  platform: esphome
   password: !secret ota_password
 
 api:
